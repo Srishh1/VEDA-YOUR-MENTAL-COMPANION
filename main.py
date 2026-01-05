@@ -1,28 +1,55 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from pydantic import BaseModel
-from rag_engine import rag_query
-import uuid
+from typing import Optional
+from fastapi.middleware.cors import CORSMiddleware
+from rag_engine import veda_reply
 
 app = FastAPI()
 
-# === Request Schema ===
-class QueryRequest(BaseModel):
-    query: str
+# ---------------- CORS CONFIG ----------------
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:8080",
+        "http://127.0.0.1:8080",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.post("/rag-query")
-def rag_endpoint(request: QueryRequest, fastapi_request: Request):
-    """
-    Handles RAG queries with auto-generated session IDs.
-    For now: no user context, no login detection.
-    """
+# ---------------- Request schema ----------------
+class ChatRequest(BaseModel):
+    message: str
+    session_id: Optional[str] = "local"
 
-    # Temporary automatic session ID (based on client IP + random token)
-    client_ip = fastapi_request.client.host
-    session_id = f"{client_ip}-{uuid.uuid4().hex[:8]}"
 
-    # Run RAG engine
-    answer = rag_query(request.query, session_id)
+# ---------------- Simple in-memory conversation store ----------------
+conversation_store = {}
 
-    return {
-        "connie_reply": answer,
-    }
+
+
+# ---------------- Chat endpoint ----------------
+@app.post("/chat")
+def chat(req: ChatRequest):
+    session_id = req.session_id or "local"
+
+    if session_id not in conversation_store:
+        conversation_store[session_id] = []
+
+    history = conversation_store[session_id]
+
+    # Get response from Veda's core logic
+    reply = veda_reply(
+        user_message=req.message,
+        conversation_history=history
+    )
+
+# IMPORTANT: ensure reply is always a string
+    if reply is None:
+        reply = "I’m here with you. Something went quiet, but I’m listening."
+
+    history.append({"role": "user", "content": req.message})
+    history.append({"role": "assistant", "content": reply})
+
+    return {"reply": reply}
