@@ -1,8 +1,8 @@
-# Ved 🌑  
+# Veda 🌑  
 **Your rhythm in dark**
 
-Ved is a calm, emotionally present conversational companion designed to sit with users during heavy or overwhelming moments.  
-It is not a therapist, not a diagnostic tool, and not a productivity chatbot — Ved’s role is presence, reflection, and gentle grounding.
+Veda is a calm, emotionally present conversational companion designed to sit with users during heavy or overwhelming moments.  
+It is not a therapist, not a diagnostic tool, and not a productivity chatbot — Veda’s role is presence, reflection, and gentle grounding.
 
 This project is a personal, open-source, full-stack AI system built using:
 - A custom frontend (Lovable → React)
@@ -13,15 +13,15 @@ This project is a personal, open-source, full-stack AI system built using:
 
 ---
 
-## ✨ What Ved Is (and Isn’t)
+## ✨ What Veda Is (and Isn’t)
 
- Ved is:
+ Veda is:
 - Emotion-first and presence-based  
 - Calm, warm, and non-clinical  
 - Designed for short, reflective conversations  
 - Local-first and privacy-respecting  
 
- Ved is not:
+ Veda is not:
 - A therapist or medical professional  
 - A diagnostic or crisis-response system  
 - Advice-heavy or instructional  
