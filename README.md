@@ -5,7 +5,7 @@ Veda is a calm, emotionally present conversational companion designed to sit wit
 It is not a therapist, not a diagnostic tool, and not a productivity chatbot — Veda’s role is presence, reflection, and gentle grounding.
 
 This project is a personal, open-source, full-stack AI system built using:
-- A custom frontend (Lovable → React)
+- A custom frontend built with React (Vite)
 - A FastAPI backend
 - A local open-source LLM via Ollama
 - Optional RAG (retrieval-augmented generation)
@@ -60,7 +60,7 @@ Response back to UI
 2️⃣ Clone the repo
 
 ```bash
-git clone https://github.com/<your-username>/veda-bot.git
+git clone https://github.com/Srishh1/VEDA-YOUR-MENTAL-COMPANION.git
 cd veda-bot
 
 3️⃣ Set up Python backend
