@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional
 from fastapi.middleware.cors import CORSMiddleware
-from rag_engine import veda_reply
+from engine import veda_reply
 
 app = FastAPI()
 

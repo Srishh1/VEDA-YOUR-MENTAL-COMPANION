@@ -72,7 +72,7 @@ export const ChatView = ({
 
     (async () => {
   try {
-    const response = await fetch("http://localhost:8000/chat", {
+    const response = await fetch("http://localhost:8001/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
